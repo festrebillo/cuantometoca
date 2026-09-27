@@ -75,11 +75,17 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 - **Por qué:** `calcula.pe` ya está registrado y tiene una web activa; usarlo generaría confusión y no se podría comprar ese dominio. "Cuánto me toca" es exactamente cómo busca la gente ("¿cuánto me toca de gratificación?"), lo que ayuda en Google. Se revisó que `cuantometoca.com` está tomado y `cuantometoca.net` libre; el `.pe` parece libre (se confirma al comprarlo en punto.pe).
 - **Cómo:** reemplazo en todos los archivos con `sed`. Correo de contacto provisional: `contacto@cuantometoca.pe` (hay que crearlo al comprar el dominio).
 
+### 2026-09-27 — v0.2 publicada en internet
+- **Qué:** se creó el repositorio público https://github.com/festrebillo/cuantometoca y se activó **GitHub Pages** (rama `main`, carpeta raíz). Sitio en vivo: https://festrebillo.github.io/cuantometoca/
+- **Por qué:** hosting gratis permanente. Publicar pronto permite que Google empiece a indexar el sitio, que es lo que más tarda. AdSense no aprueba subdominios `github.io`, así que se postulará al comprar `cuantometoca.pe`; GitHub Pages redirige automáticamente la dirección vieja al dominio nuevo.
+- **Cómo:** `gh repo create --public --source=. --push` y `gh api POST repos/.../pages`.
+- **Cómo publicar cambios desde ahora:** `git add -A`, `git commit -m "mensaje"` y `git push`. La web se actualiza sola en aproximadamente 1 minuto.
+
 ## 7. Próximos pasos
 1. [ ] **Probar la calculadora** abriendo `gratificacion.html` en el navegador (doble clic).
 2. [ ] **Comprar `cuantometoca.pe`** (punto.pe o un registrador autorizado) y reemplazar `https://festrebillo.github.io/cuantometoca` por el dominio. En VS Code: Ctrl+Shift+H.
 3. [ ] **Crear el correo `contacto@cuantometoca.pe`** (por ejemplo con reenvío gratis de Cloudflare Email Routing).
-4. [ ] **Publicar:** subir el repositorio a GitHub y conectarlo a Vercel o GitHub Pages.
+4. [x] **Publicar:** en GitHub Pages ✅ (2026-09-27).
 5. [ ] **Dar de alta el sitio en Google Search Console** y enviar el `sitemap.xml`.
 6. [ ] **Agregar calculadoras:** CTS (antes del 15 de noviembre), sueldo neto y liquidación.
 7. [ ] **Postular a AdSense** cuando haya al menos 4–5 herramientas con contenido. Al ser aprobado, pegar su script en el `<head>` y crear el archivo `ads.txt`.
