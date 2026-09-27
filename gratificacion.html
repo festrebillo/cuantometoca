@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Gratificación 2026 Perú | CalculaPE</title>
+  <meta name="description" content="Calcula gratis tu gratificación de julio o diciembre 2026 en Perú, con asignación familiar y bonificación extraordinaria del 9%. Resultado al instante y explicado paso a paso.">
+  <link rel="canonical" href="https://TU-DOMINIO.com/gratificacion.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "¿Cuándo se paga la gratificación en Perú?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Se paga dos veces al año: la de Fiestas Patrias hasta el 15 de julio y la de Navidad hasta el 15 de diciembre."}},
+      {"@type": "Question", "name": "¿La gratificación tiene descuentos de AFP u ONP?",
+       "acceptedAnswer": {"@type": "Answer", "text": "No. La gratificación no está afecta a aportes de AFP, ONP ni EsSalud, aunque sí puede estar afecta al impuesto a la renta de quinta categoría."}},
+      {"@type": "Question", "name": "¿Qué es la bonificación extraordinaria?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Es un monto adicional igual al 9% de la gratificación (6.75% si estás afiliado a una EPS), que corresponde al aporte a EsSalud que el empleador no paga sobre la gratificación."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">Calcula<span>PE</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Herramientas</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Calculadora de gratificación 2026</h1>
+    <p class="lead">Descubre cuánto te toca de gratificación en julio o diciembre, incluyendo la bonificación extraordinaria. Gratis, sin registro y al instante.</p>
+
+    <div class="calc-layout">
+      <form id="form-grati" class="card" novalidate>
+        <div class="field">
+          <label for="periodo">¿Qué gratificación quieres calcular?</label>
+          <select id="periodo">
+            <option value="diciembre">Navidad (diciembre)</option>
+            <option value="julio">Fiestas Patrias (julio)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="anio">Año</label>
+          <select id="anio">
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sueldo">Sueldo básico mensual (S/)</label>
+          <input id="sueldo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ej. 2500">
+        </div>
+        <div class="field">
+          <label class="check"><input id="asignacion" type="checkbox"> Recibo asignación familiar</label>
+          <small>Si tienes hijos menores de 18 años (o estudiando hasta los 24). Equivale a <span id="rmv-valor"></span> al mes.</small>
+        </div>
+        <div class="field">
+          <label for="variables">Promedio de ingresos variables (S/) — opcional</label>
+          <input id="variables" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0">
+          <small>Horas extras, comisiones o bonos que recibiste al menos 3 de los últimos 6 meses.</small>
+        </div>
+        <div class="field">
+          <label for="ingreso">Fecha de ingreso — opcional</label>
+          <input id="ingreso" type="date">
+          <small>Si entraste a trabajar durante el semestre, la usamos para contar tus meses.</small>
+        </div>
+        <div class="field">
+          <label for="meses">Meses completos trabajados en el semestre</label>
+          <select id="meses">
+            <option value="6">6 meses</option>
+            <option value="5">5 meses</option>
+            <option value="4">4 meses</option>
+            <option value="3">3 meses</option>
+            <option value="2">2 meses</option>
+            <option value="1">1 mes</option>
+            <option value="0">Menos de 1 mes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="regimen">Régimen laboral de tu empresa</label>
+          <select id="regimen">
+            <option value="general">Régimen general</option>
+            <option value="pequena">Pequeña empresa (REMYPE)</option>
+            <option value="micro">Microempresa (REMYPE)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="seguro">Seguro de salud</label>
+          <select id="seguro">
+            <option value="essalud">EsSalud</option>
+            <option value="eps">EPS</option>
+          </select>
+        </div>
+        <button class="btn" type="submit">Calcular gratificación</button>
+      </form>
+
+      <section class="card" aria-live="polite">
+        <h2 style="margin-top:0">Resultado</h2>
+        <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular".</p></div>
+      </section>
+    </div>
+
+    <div class="ad-slot"><!-- Bloque de anuncio AdSense --></div>
+
+    <article class="content">
+      <h2>¿Qué es la gratificación?</h2>
+      <p>La gratificación es un beneficio que reciben los trabajadores del sector privado en Perú dos veces al año, según la <strong>Ley N.° 27735</strong>. Equivale a un sueldo completo por cada semestre trabajado y se paga en dos fechas:</p>
+      <table>
+        <tr><th>Gratificación</th><th>Semestre que se calcula</th><th>Fecha límite de pago</th></tr>
+        <tr><td>Fiestas Patrias</td><td>Enero a junio</td><td>15 de julio</td></tr>
+        <tr><td>Navidad</td><td>Julio a diciembre</td><td>15 de diciembre</td></tr>
+      </table>
+
+      <h2>¿Cómo se calcula?</h2>
+      <p>La fórmula es:</p>
+      <p><strong>Gratificación = (Remuneración computable ÷ 6) × meses completos trabajados</strong></p>
+      <p>La <strong>remuneración computable</strong> es tu sueldo básico más la asignación familiar (si la recibes) más el promedio de ingresos variables regulares, como horas extras o comisiones. Solo se cuentan <strong>meses calendario completos</strong>: si ingresaste el 10 de agosto, agosto no cuenta y tu primer mes completo es septiembre.</p>
+      <p>Además, recibes una <strong>bonificación extraordinaria</strong> del <strong>9%</strong> de la gratificación (6.75% si estás en una EPS). Es el aporte a EsSalud que tu empleador no paga sobre este beneficio y que la ley te entrega a ti.</p>
+
+      <h2>Ejemplo práctico</h2>
+      <p>Ana gana S/ 2,500, recibe asignación familiar y trabajó los 6 meses del semestre en una empresa del régimen general, con EsSalud:</p>
+      <ul>
+        <li>Remuneración computable: S/ 2,500 + S/ 113 = <strong>S/ 2,613</strong></li>
+        <li>Gratificación: S/ 2,613 ÷ 6 × 6 = <strong>S/ 2,613</strong></li>
+        <li>Bonificación extraordinaria: 9% × S/ 2,613 = <strong>S/ 235.17</strong></li>
+        <li>Total a recibir: <strong>S/ 2,848.17</strong></li>
+      </ul>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿La gratificación tiene descuentos de AFP u ONP?</summary>
+        <p>No. La gratificación no está afecta a aportes de AFP, ONP ni EsSalud. Sí se considera para el impuesto a la renta de quinta categoría, que solo se aplica si tus ingresos del año superan las 7 UIT.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si renuncio antes de julio o diciembre?</summary>
+        <p>Recibes la <strong>gratificación trunca</strong>, proporcional a los meses completos que trabajaste en el semestre. Se paga junto con tu liquidación.</p>
+      </details>
+      <details>
+        <summary>¿Los trabajadores de microempresa reciben gratificación?</summary>
+        <p>No, si la empresa está inscrita en el REMYPE como microempresa. En la pequeña empresa se recibe media remuneración por gratificación.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si mi empleador no me paga?</summary>
+        <p>Puedes presentar una denuncia ante la SUNAFIL. El empleador que no paga a tiempo puede ser multado y debe abonar intereses.</p>
+      </details>
+
+      <p class="note">Calculadora referencial basada en la normativa vigente (última revisión: <span id="ultima-revision"></span>). No reemplaza la asesoría de un especialista ni el cálculo oficial de tu empleador.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+      </nav>
+      <p>© <span data-year></span> CalculaPE. Herramientas gratuitas para trabajadores en Perú.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/gratificacion.js"></script>
+</body>
+</html>

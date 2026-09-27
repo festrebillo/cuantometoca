@@ -1,0 +1,9 @@
+# Datos sensibles: nunca al repositorio
+.env
+.env.*
+!.env.example
+
+# Sistema
+Thumbs.db
+.DS_Store
+.vscode/
