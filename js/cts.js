@@ -61,6 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         ["Total CTS", soles(total), true]
       ]) +
       `<p class="note">${gratiIngresada > 0 ? "" : "Asumimos que recibiste la gratificación completa del semestre; si fue menor, escríbela en el campo opcional. "}La CTS no tiene descuentos: se deposita completa en tu cuenta CTS.</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });

@@ -40,6 +40,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     out.innerHTML = cajaTotal("Te corresponderían aproximadamente", total, "Vacaciones al terminar tu vínculo laboral") +
       tablaDesglose(filas) + `<p class="note">${notas.join(" ")}</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });

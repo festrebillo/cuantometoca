@@ -6,10 +6,25 @@
   <title>CuántoMeToca.pe | Calculadoras laborales gratis para Perú</title>
   <meta name="description" content="Calculadoras gratuitas para trabajadores en Perú: gratificación, CTS, liquidación, sueldo neto y más. Resultados al instante y explicados paso a paso.">
   <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/">
+  <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CuántoMeToca.pe">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:title" content="CuántoMeToca.pe | Calculadoras laborales gratis para Perú">
+  <meta property="og:description" content="Calculadoras gratuitas para trabajadores en Perú: gratificación, CTS, liquidación, sueldo neto y más. Resultados al instante y explicados paso a paso.">
+  <meta property="og:url" content="https://festrebillo.github.io/cuantometoca/">
+  <meta property="og:image" content="https://festrebillo.github.io/cuantometoca/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
@@ -21,40 +36,53 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <h1>Calculadoras laborales gratis para Perú</h1>
-    <p class="lead">Calcula tus beneficios según la ley peruana: rápido, gratis, sin registro y con cada paso explicado.</p>
+  <main class="wrap" id="contenido">
+    <section class="hero">
+      <p class="eyebrow">Actualizado a <span data-config="ULTIMA_REVISION">septiembre 2026</span> con la ley peruana vigente</p>
+      <h1>Calcula cuánto te toca, sol por sol</h1>
+      <p class="lead">Gratificación, CTS, liquidación y más, con cada paso explicado. Gratis y sin registro, para que sepas si te están pagando bien.</p>
+      <ul class="facts" aria-label="Valores legales usados en los cálculos">
+        <li>Sueldo mínimo <b data-config="RMV">S/ 1,130.00</b></li>
+        <li>Asignación familiar <b data-config="ASIGNACION">S/ 113.00</b></li>
+        <li>UIT 2026 <b data-config="UIT">S/ 5,500.00</b></li>
+      </ul>
+    </section>
 
-    <div class="tools">
-      <a class="tool" href="gratificacion.html">
-        <span class="tag">Disponible</span>
+    <div class="tools tools--home">
+      <a class="tool tool--featured" href="gratificacion.html">
+        <span class="tag">La más usada</span>
         <h3>Gratificación</h3>
-        <p>Cuánto te toca en julio o diciembre, con bonificación extraordinaria.</p>
+        <p>Cuánto te toca en Fiestas Patrias o Navidad, con la bonificación extraordinaria del 9%.</p>
+        <span class="tool-sample" aria-hidden="true">
+          <span>Sueldo S/ 2,500 + asignación familiar, 6 meses</span>
+          <b>S/ 2,848.17</b>
+        </span>
+        <span class="tool-meta">Se paga en julio y diciembre</span>
       </a>
       <a class="tool" href="cts.html">
-        <span class="tag">Disponible</span>
         <h3>CTS</h3>
-        <p>Compensación por tiempo de servicios de mayo y noviembre.</p>
+        <p>Compensación por tiempo de servicios que tu empleador deposita en tu banco.</p>
+        <span class="tool-meta">Se deposita en mayo y noviembre</span>
       </a>
       <a class="tool" href="sueldo-neto.html">
-        <span class="tag">Disponible</span>
         <h3>Sueldo neto</h3>
-        <p>Tu sueldo después de AFP u ONP y quinta categoría.</p>
+        <p>Lo que llega a tu cuenta después de AFP u ONP y quinta categoría.</p>
+        <span class="tool-meta">Cada mes</span>
       </a>
       <a class="tool" href="liquidacion.html">
-        <span class="tag">Disponible</span>
         <h3>Liquidación</h3>
-        <p>Beneficios que te corresponden al dejar un trabajo.</p>
+        <p>Todo lo que te deben pagar al dejar un trabajo: CTS, gratificación y vacaciones truncas.</p>
+        <span class="tool-meta">Al terminar el contrato</span>
       </a>
       <a class="tool" href="vacaciones-truncas.html">
-        <span class="tag">Disponible</span>
         <h3>Vacaciones truncas</h3>
         <p>Vacaciones pendientes o proporcionales al cese.</p>
+        <span class="tool-meta">Al terminar el contrato</span>
       </a>
       <a class="tool" href="horas-extras.html">
-        <span class="tag">Disponible</span>
         <h3>Horas extras</h3>
-        <p>Pago con sobretasa del 25% y 35%.</p>
+        <p>Pago con sobretasa del 25%, 35% y en feriados.</p>
+        <span class="tool-meta">Con tu sueldo del mes</span>
       </a>
     </div>
 

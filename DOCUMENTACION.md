@@ -27,6 +27,9 @@ Crear una **web de calculadoras laborales gratuitas para Perú** que genere ingr
 | Google Search Console | Que Google indexe el sitio | Gratis |
 | Google AdSense | Monetización con anuncios | Gratis (Google se queda con una comisión) |
 | Claude | Programación, contenidos y SEO | Suscripción que ya se tiene |
+| Skills de diseño de Claude (Taste Skill `redesign-existing-projects`, Emil Kowalski `emil-design-eng`) | Auditoría y rediseño visual v1.1 | Gratis (código abierto) |
+| Google Fonts: Geist y Geist Mono | Tipografía del sitio y de los montos | Gratis |
+| Microsoft Edge *headless* | Pruebas y capturas de pantalla (también genera `og-image.png`) | Gratis, ya instalado |
 
 ## 4. Estructura
 ```
@@ -37,6 +40,10 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 ├── contacto.html              Contacto (requisito de AdSense)
 ├── politica-privacidad.html   Privacidad y cookies de Google (requisito de AdSense)
 ├── terminos.html              Términos de uso
+├── 404.html                   Página "no encontrada" (GitHub Pages la usa sola). ⚠️ Tiene <base href="/cuantometoca/">: cambiar a "/" al pasar al dominio propio
+├── favicon.svg                Ícono de la pestaña ("S/" sobre rojo)
+├── og-image.png               Imagen que aparece al compartir un enlace en WhatsApp/Facebook (1200×630)
+├── recursos/og-image.html     Fuente de og-image.png; se regenera con Edge (ver bitácora v1.1)
 ├── css/styles.css             Estilos compartidos (modo claro y oscuro, móvil primero)
 ├── js/config.js               ⚠️ Valores legales (RMV, tasas) — único archivo que se toca cuando cambia la ley
 ├── cts.html, sueldo-neto.html, liquidacion.html, vacaciones-truncas.html, horas-extras.html
@@ -60,6 +67,10 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 | Sitio estático, sin frameworks | Hosting gratis, carga muy rápida (Google la premia), cero mantenimiento de servidores. |
 | Valores legales en `js/config.js` | Cuando cambie la ley (p. ej. la RMV) se actualiza un solo archivo y todas las calculadoras quedan al día. |
 | Cálculos en el navegador | No se guardan datos personales, lo que simplifica la privacidad y genera confianza. |
+| Resultado con aspecto de boleta de pago (v1.1) | El usuario viene a comprobar su dinero: montos en fuente monoespaciada, filas punteadas y total con doble línea se leen como un documento confiable. |
+| Un solo color de acento y grises cálidos (v1.1) | Menos ruido visual; el rojo queda para acciones y totales. En modo oscuro el botón usa texto oscuro para mantener el contraste. |
+| Animación mínima (v1.1) | Solo al presionar botones, al aparecer el resultado (280 ms) y en el menú de preguntas. Se respeta "reducir movimiento" del sistema. |
+| Desplazamiento al resultado centralizado en `config.js` (v1.1) | Antes, en celular, los avisos de error aparecían debajo del formulario sin que el usuario los viera. |
 | Explicaciones y FAQ en cada calculadora | AdSense rechaza sitios con poco contenido; el texto útil también posiciona en Google. |
 
 ### Base legal de la calculadora de gratificación
@@ -106,12 +117,33 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
   - **Pruebas:** 21 pruebas de fórmulas y 6 de punta a punta, todas pasando, ejecutadas con Microsoft Edge en modo *headless* (no hay Node instalado).
   - Comando: `msedge --headless=new --allow-file-access-from-files --virtual-time-budget=15000 --dump-dom "file:///D:/Proyectos%20Claude/CalculaPE/tests/paginas.html"`
 
+### 2026-09-27 — v1.1: rediseño visual con las skills de diseño
+- **Qué:** nuevo diseño en todo el sitio sin tocar ninguna fórmula:
+  - **Tipografía:** Geist para textos y Geist Mono para montos; títulos más grandes y compactos.
+  - **Colores:** paleta cálida con un solo acento; el rojo se suavizó un poco.
+  - **Resultado:** ahora se lee como una boleta de pago.
+  - **Formularios:** campos de 48 px (fáciles de tocar en celular), flecha propia en las listas y anillo de foco visible.
+  - **Portada:** nuevo encabezado, valores legales en vivo (sueldo mínimo, asignación familiar y UIT, leídos de `config.js`) y tarjeta destacada de gratificación con un ejemplo de resultado. Se quitó la etiqueta "Disponible", que se repetía en todas las tarjetas.
+  - **Menú:** marca la página actual.
+  - **Accesibilidad:** enlace "Saltar al contenido".
+  - **Archivos nuevos:** favicon, página 404, e imagen y etiquetas para compartir (Open Graph).
+  - **Corrección:** el espacio superior de la página no se aplicaba (`.wrap` anulaba el `padding` de `main`).
+- **Por qué:** el diseño anterior funcionaba pero se veía genérico. En temas de dinero la apariencia influye en la confianza, y un sitio pulido se comparte más y retiene mejor (importante para AdSense).
+- **Cómo:**
+  - Se siguió la auditoría de la skill `redesign-existing-projects` (Taste Skill) y los criterios de animación de `emil-design-eng` (Emil Kowalski).
+  - Las cabeceras de las 11 páginas se actualizaron con un script de Python.
+  - Las calculadoras ya no llaman a `scrollIntoView`; ahora `config.js` observa `#resultado`, lo anima y lo muestra.
+  - Las capturas de móvil se hicieron dentro de un iframe de 390 px, porque Edge *headless* no permite ventanas de menos de 492 px.
+  - **Pruebas:** 21/21 fórmulas y 6/6 de punta a punta pasan después del cambio.
+  - **Regenerar `og-image.png`:** `msedge --headless=new --window-size=1200,630 --virtual-time-budget=8000 --screenshot="og-image.png" "file:///D:/Proyectos%20Claude/CalculaPE/recursos/og-image.html"`
+  - ⚠️ El ejemplo de la portada (S/ 2,848.17) y la imagen para compartir usan la RMV actual: si cambia la RMV, actualizarlos a mano.
+
 ## 7. Próximos pasos
 1. [ ] **Probar la calculadora** abriendo `gratificacion.html` en el navegador (doble clic).
-2. [ ] **Comprar `cuantometoca.pe`** (punto.pe o un registrador autorizado) y reemplazar `https://festrebillo.github.io/cuantometoca` por el dominio. En VS Code: Ctrl+Shift+H.
+2. [ ] **Comprar `cuantometoca.pe`** (punto.pe o un registrador autorizado) y reemplazar `https://festrebillo.github.io/cuantometoca` por el dominio (incluye `og:url`/`og:image`, y en `404.html` cambiar `<base href="/cuantometoca/">` por `<base href="/">`). En VS Code: Ctrl+Shift+H.
 3. [ ] **Crear el correo `contacto@cuantometoca.pe`** (por ejemplo con reenvío gratis de Cloudflare Email Routing).
 4. [x] **Publicar:** en GitHub Pages ✅ (2026-09-27).
 5. [ ] **Dar de alta el sitio en Google Search Console** y enviar el `sitemap.xml`.
 6. [x] **Agregar calculadoras:** CTS, sueldo neto, liquidación, vacaciones y horas extras ✅ (2026-09-27).
 7. [ ] **Postular a AdSense** cuando haya al menos 4–5 herramientas con contenido. Al ser aprobado, pegar su script en el `<head>` y crear el archivo `ads.txt`.
-8. [ ] **Revisar valores cada trimestre:** remuneración máxima asegurable de la AFP (SBS), comisiones de AFP y UIT cada enero. **Vigilar la RMV:** si sale el decreto del aumento a S/ 1,300, actualizar `js/config.js` y registrarlo en esta bitácora.
+8. [ ] **Revisar valores cada trimestre:** (si cambia la RMV, actualizar también el ejemplo de la portada y `og-image.png`) remuneración máxima asegurable de la AFP (SBS), comisiones de AFP y UIT cada enero. **Vigilar la RMV:** si sale el decreto del aumento a S/ 1,300, actualizar `js/config.js` y registrarlo en esta bitácora.

@@ -72,7 +72,41 @@ function soles(n) {
   return "S/ " + n.toLocaleString("es-PE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-// Año actual en el pie de página
 document.addEventListener("DOMContentLoaded", () => {
+  // Año actual en el pie de página
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+
+  // Valores legales mostrados en el texto (p. ej. <b data-config="RMV">), siempre desde CONFIG
+  const valores = {
+    RMV: () => soles(CONFIG.RMV),
+    UIT: () => soles(CONFIG.UIT),
+    ASIGNACION: () => soles(CONFIG.RMV * CONFIG.ASIGNACION_FAMILIAR_PCT),
+    ULTIMA_REVISION: () => CONFIG.ULTIMA_REVISION
+  };
+  document.querySelectorAll("[data-config]").forEach(el => {
+    const v = valores[el.dataset.config];
+    if (v) el.textContent = v();
+  });
+
+  // Marca en el menú la página actual
+  const actual = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".site-nav a").forEach(a => {
+    if (a.getAttribute("href") === actual) a.setAttribute("aria-current", "page");
+  });
+
+  // Cada vez que una calculadora escribe un resultado (o un aviso), lo animamos
+  // y, si quedó fuera de la pantalla (en celular está debajo del formulario), lo mostramos.
+  const out = document.getElementById("resultado");
+  if (out) {
+    const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    new MutationObserver(() => {
+      out.classList.remove("is-new");
+      void out.offsetWidth;                    // reinicia la animación
+      out.classList.add("is-new");
+      const r = out.getBoundingClientRect();
+      if (r.top < 0 || r.top > innerHeight - 120) {
+        out.parentElement.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
+      }
+    }).observe(out, { childList: true });
+  }
 });

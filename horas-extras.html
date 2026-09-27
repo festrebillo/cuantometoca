@@ -6,6 +6,20 @@
   <title>Calculadora de Horas Extras 2026 Perú (25% y 35%) | CuántoMeToca.pe</title>
   <meta name="description" content="Calcula el pago de tus horas extras en Perú: sobretasa de 25% las dos primeras horas, 35% las siguientes y 100% en feriados. Gratis y al instante.">
   <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/horas-extras.html">
+  <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CuántoMeToca.pe">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:title" content="Calculadora de Horas Extras 2026 Perú (25% y 35%) | CuántoMeToca.pe">
+  <meta property="og:description" content="Calcula el pago de tus horas extras en Perú: sobretasa de 25% las dos primeras horas, 35% las siguientes y 100% en feriados. Gratis y al instante.">
+  <meta property="og:url" content="https://festrebillo.github.io/cuantometoca/horas-extras.html">
+  <meta property="og:image" content="https://festrebillo.github.io/cuantometoca/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
   <script type="application/ld+json">
@@ -13,6 +27,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
@@ -24,7 +39,7 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap" id="contenido">
     <h1>Calculadora de horas extras</h1>
     <p class="lead">Calcula cuánto deben pagarte por tus horas extras según la ley peruana, con sobretasas del 25%, 35% y feriados.</p>
 
@@ -45,7 +60,7 @@
         </div>
         <div class="field">
           <label>Ayuda rápida (opcional)</label>
-          <div style="display:flex;gap:8px">
+          <div class="field-row">
             <input id="dias-extra" type="number" min="0" placeholder="Días con horas extra" aria-label="Días con horas extra">
             <input id="horas-dia" type="number" min="0" step="0.5" placeholder="Horas extra por día" aria-label="Horas extra por día">
           </div>
@@ -70,7 +85,7 @@
       </form>
 
       <section class="card" aria-live="polite">
-        <h2 style="margin-top:0">Resultado</h2>
+        <h2 class="card-title">Resultado</h2>
         <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular horas extras".</p></div>
       </section>
     </div>

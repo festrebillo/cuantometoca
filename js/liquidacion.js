@@ -46,6 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
     out.innerHTML = cajaTotal("Tu liquidación sería aproximadamente", total,
       `Trabajaste ${tiempoTexto(tiempoEntre(ingreso, cese))}`) +
       tablaDesglose(filas) + `<p class="note">${notas.join(" ")}</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });

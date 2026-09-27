@@ -61,6 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         ? `Impuesto anual estimado: ${soles(impuesto)}. La retención real varía mes a mes; aquí mostramos el promedio.`
         : `No superas las 7 UIT (${soles(CONFIG.DEDUCCION_UIT * CONFIG.UIT)} al año), así que no pagas impuesto a la renta.`) +
       ` Tu empleador aporta además el 9% a EsSalud, que no se descuenta de tu sueldo.</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });

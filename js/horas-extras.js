@@ -48,6 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
     out.innerHTML = cajaTotal("Deberían pagarte por horas extras", total, "Adicional a tu sueldo del mes") +
       tablaDesglose(filas) +
       `<p class="note">Las horas extras son remuneración: se les descuenta AFP u ONP. Si las recibes de forma regular (3 de cada 6 meses), también suben tu gratificación y tu CTS.</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });

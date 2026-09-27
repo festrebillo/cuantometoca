@@ -92,6 +92,5 @@ document.addEventListener("DOMContentLoaded", () => {
         <tr class="total"><td>Total a recibir</td><td>${soles(r.total)}</td></tr>
       </table>
       <p class="note">La gratificación no tiene descuentos de AFP, ONP ni EsSalud. Sí puede estar afecta al impuesto a la renta de quinta categoría si tus ingresos anuales superan 7 UIT.</p>`;
-    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });
