@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Pruebas CuántoMeToca.pe</title></head>
+<body>
+<!-- Pruebas de las fórmulas. Abrir en el navegador o ejecutar:
+     msedge --headless --disable-gpu --dump-dom "file:///.../tests/pruebas.html" -->
+<pre id="salida"></pre>
+<script src="../js/config.js"></script>
+<script src="../js/laboral.js"></script>
+<script>
+const res = [];
+const F = parseFecha;
+function ok(nombre, obtenido, esperado, tol = 0.01) {
+  const pasa = typeof esperado === "number" ? Math.abs(obtenido - esperado) <= tol : JSON.stringify(obtenido) === JSON.stringify(esperado);
+  res.push(`${pasa ? "PASA" : "FALLA"} | ${nombre} | obtenido=${JSON.stringify(obtenido)} esperado=${JSON.stringify(esperado)}`);
+}
+
+// Fechas
+ok("tiempo semestre completo nov-abr", tiempoEntre(F("2025-11-01"), F("2026-04-30")), { meses: 6, dias: 0 });
+ok("tiempo 15-mar a 30-abr", tiempoEntre(F("2026-03-15"), F("2026-04-30")), { meses: 1, dias: 16 });
+ok("tiempo un solo día", tiempoEntre(F("2026-09-10"), F("2026-09-10")), { meses: 0, dias: 1 });
+ok("tiempo año completo", tiempoEntre(F("2025-03-01"), F("2026-02-28")), { meses: 12, dias: 0 });
+ok("meses completos jul-dic", mesesCompletos(F("2026-07-01"), F("2026-12-31")), 6);
+ok("meses completos ingreso 10-ago", mesesCompletos(F("2026-08-10"), F("2026-12-31")), 4);
+ok("meses completos cese 15-sep", mesesCompletos(F("2026-07-01"), F("2026-09-15")), 2);
+
+// Remuneración computable
+ok("RC con asignación", remuneracionComputable(2500, true, 0).rc, 2613);
+
+// Gratificación trunca: cese 30-sep, semestre jul-sep = 3 meses, RC 2613
+const g = gratiTrunca({ rc: 2613, ingreso: F("2020-01-01"), cese: F("2026-09-30"), regimen: "general", seguro: "essalud" });
+ok("grati trunca 3 meses", g.grati, 1306.50);
+ok("bono 9% grati trunca", g.bono, 117.585);
+
+// CTS trunca: cese 31-oct, periodo 1-may a 31-oct = 6 meses, RC 3000 -> RC_cts 3500 -> 1750
+ok("CTS trunca 6 meses", ctsTrunca({ rc: 3000, ingreso: F("2020-01-01"), cese: F("2026-10-31"), regimen: "general" }).monto, 1750);
+// CTS pequeña empresa: RC 3000 + (1500/6)=3250 -> /12*6 = 1625 * 0.5 = 812.50
+ok("CTS pequeña empresa", ctsTrunca({ rc: 3000, ingreso: F("2020-01-01"), cese: F("2026-10-31"), regimen: "pequena" }).monto, 812.50);
+// CTS 1 mes y 16 días: RC_cts 3500 -> 3500/12 + 3500/360*16 = 291.667 + 155.556 = 447.22
+ok("CTS 1 mes 16 días", ctsTrunca({ rc: 3000, ingreso: F("2026-03-15"), cese: F("2026-04-30"), regimen: "general" }).monto, 447.22);
+
+// Vacaciones truncas (ejemplo de la página): 1800, ingreso 1-mar-2025, cese 31-ago-2026 -> 900
+ok("vacaciones truncas ejemplo María", vacacionesTruncas({ rc: 1800, ingreso: F("2025-03-01"), cese: F("2026-08-31"), regimen: "general", pendientes: 0 }).truncas, 900);
+ok("vacaciones REMYPE mitad", vacacionesTruncas({ rc: 1800, ingreso: F("2025-03-01"), cese: F("2026-08-31"), regimen: "pequena", pendientes: 0 }).truncas, 450);
+ok("vacaciones menos de 1 mes", vacacionesTruncas({ rc: 1800, ingreso: F("2026-08-10"), cese: F("2026-08-31"), regimen: "general", pendientes: 0 }).truncas, 0);
+ok("vacaciones no gozadas 1 periodo", vacacionesTruncas({ rc: 1800, ingreso: F("2025-03-01"), cese: F("2026-08-31"), regimen: "general", pendientes: 1 }).noGozadas, 1800);
+
+// Indemnización: 2 años exactos, RC 2000 -> 1.5*2000*2 = 6000; 10 años -> tope 12 sueldos = 24000
+ok("indemnización 2 años", indemnizacion({ rc: 2000, ingreso: F("2024-09-01"), cese: F("2026-08-31"), regimen: "general" }).monto, 6000);
+ok("indemnización tope 12 sueldos", indemnizacion({ rc: 2000, ingreso: F("2016-09-01"), cese: F("2026-08-31"), regimen: "general" }).monto, 24000);
+
+// Quinta categoría: sueldo 5000 -> anual 5000*14 + 9% de 10000 = 70900; neta 32400
+// 27500*8% = 2200 + 4900*14% = 686 -> 2886
+ok("quinta sueldo 5000", impuestoQuinta(70900).impuesto, 2886);
+ok("quinta bajo 7 UIT", impuestoQuinta(30000).impuesto, 0);
+
+const fallas = res.filter(r => r.startsWith("FALLA")).length;
+document.getElementById("salida").textContent = res.join("\n") + `\n\nRESUMEN: ${res.length - fallas} pasan, ${fallas} fallan`;
+</script>
+</body>
+</html>

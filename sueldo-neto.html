@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Sueldo Neto 2026 Perú (AFP, ONP y quinta) | CuántoMeToca.pe</title>
+  <meta name="description" content="Calcula tu sueldo neto 2026 en Perú: descuentos de AFP u ONP e impuesto a la renta de quinta categoría con la UIT 2026. Gratis y al instante.">
+  <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/sueldo-neto.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto me descuenta la AFP en 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Aproximadamente entre 11.37% y 13.06% del sueldo: 10% de aporte a tu fondo, 1.37% de prima de seguro y, si tienes comisión por flujo, entre 1.47% y 1.69%. Con comisión mixta no se cobra comisión sobre el sueldo."}}, {"@type": "Question", "name": "¿Cuánto me descuenta la ONP?", "acceptedAnswer": {"@type": "Answer", "text": "El 13% de tu remuneración bruta."}}, {"@type": "Question", "name": "¿Desde qué sueldo pago impuesto a la renta?", "acceptedAnswer": {"@type": "Answer", "text": "En 2026, con 2 gratificaciones al año, empiezas a pagar quinta categoría si tu sueldo mensual supera aproximadamente S/ 2,715, porque tus ingresos anuales superarían las 7 UIT (S/ 38,500)."}}, {"@type": "Question", "name": "¿EsSalud se descuenta de mi sueldo?", "acceptedAnswer": {"@type": "Answer", "text": "No. El 9% de EsSalud es un aporte que paga tu empleador aparte de tu sueldo."}}, {"@type": "Question", "name": "¿Me conviene AFP u ONP?", "acceptedAnswer": {"@type": "Answer", "text": "Depende de tu edad, tu sueldo y tus años de aporte. La AFP forma un fondo propio que heredan tus familiares; la ONP da una pensión fija si cumples 20 años de aportes. Evalúalo con calma y con información oficial."}}]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Herramientas</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Calculadora de sueldo neto 2026</h1>
+    <p class="lead">Descubre cuánto recibirás realmente cada mes después de los descuentos de AFP u ONP y del impuesto a la renta.</p>
+
+    <div class="calc-layout">
+      <form id="form-neto" class="card" novalidate>
+        <div class="field">
+          <label for="sueldo">Sueldo bruto mensual (S/)</label>
+          <input id="sueldo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ej. 2500">
+        </div>
+        <div class="field">
+          <label class="check"><input id="asignacion" type="checkbox"> Recibo asignación familiar</label>
+          <small>10% del sueldo mínimo (S/ 113 al mes) si tienes hijos menores de 18 años o estudiando hasta los 24.</small>
+        </div>
+        <div class="field">
+          <label for="variables">Promedio de ingresos variables (S/) — opcional</label>
+          <input id="variables" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0">
+          <small>Horas extras, comisiones o bonos promedio que recibes cada mes.</small>
+        </div>
+        <div class="field">
+          <label for="sistema">Sistema de pensiones</label>
+          <select id="sistema"><option value="afp">AFP (sistema privado)</option><option value="onp">ONP (sistema nacional)</option></select>
+        </div>
+        <div id="campos-afp">
+          <div class="field">
+            <label for="afp">Tu AFP</label>
+            <select id="afp"><option value="integra">Integra</option><option value="prima">Prima</option><option value="profuturo">Profuturo</option><option value="habitat">Habitat</option></select>
+          </div>
+          <div class="field">
+            <label for="comision">Tipo de comisión</label>
+            <select id="comision"><option value="mixta">Mixta (sobre el saldo)</option><option value="flujo">Por flujo (sobre el sueldo)</option></select>
+            <small>Si te afiliaste después de 2013, casi seguro es mixta. Lo ves en tu boleta.</small>
+          </div>
+        </div>
+        <div class="field">
+          <label for="regimen">Régimen laboral de tu empresa</label>
+          <select id="regimen">
+            <option value="general">Régimen general</option>
+            <option value="pequena">Pequeña empresa (REMYPE)</option>
+            <option value="micro">Microempresa (REMYPE)</option>
+          </select>
+          <small>Si no sabes, casi siempre es el régimen general.</small>
+        </div>
+        <button class="btn" type="submit">Calcular sueldo neto</button>
+      </form>
+
+      <section class="card" aria-live="polite">
+        <h2 style="margin-top:0">Resultado</h2>
+        <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular sueldo neto".</p></div>
+      </section>
+    </div>
+
+    <div class="ad-slot"><!-- Bloque de anuncio AdSense --></div>
+
+    <article class="content">
+      <h2>¿Qué descuentos tiene mi sueldo?</h2>
+      <p>De tu sueldo bruto se descuentan principalmente dos conceptos: el aporte a tu <strong>sistema de pensiones</strong> y, si ganas lo suficiente, el <strong>impuesto a la renta de quinta categoría</strong>. El 9% de EsSalud lo paga tu empleador y no se descuenta de tu sueldo.</p>
+      <table>
+        <tr><th>Descuento</th><th>ONP</th><th>AFP</th></tr>
+        <tr><td>Aporte</td><td>13%</td><td>10% a tu fondo</td></tr>
+        <tr><td>Prima de seguro</td><td>—</td><td>1.37%</td></tr>
+        <tr><td>Comisión</td><td>—</td><td>0% (mixta) o 1.47% – 1.69% (por flujo)</td></tr>
+      </table>
+
+      <h2>¿Cuándo pago impuesto a la renta?</h2>
+      <p>Solo si tus ingresos del año superan las <strong>7 UIT</strong> (S/ 38,500 en 2026, con la UIT de <span id="uit-valor"></span>). Tu empleador proyecta tu ingreso anual (12 sueldos, gratificaciones y bonificación), resta las 7 UIT y aplica las tasas progresivas:</p>
+      <table>
+        <tr><th>Renta neta anual</th><th>Tasa</th></tr>
+        <tr><td>Hasta 5 UIT (S/ 27,500)</td><td>8%</td></tr>
+        <tr><td>Más de 5 hasta 20 UIT (S/ 110,000)</td><td>14%</td></tr>
+        <tr><td>Más de 20 hasta 35 UIT (S/ 192,500)</td><td>17%</td></tr>
+        <tr><td>Más de 35 hasta 45 UIT (S/ 247,500)</td><td>20%</td></tr>
+        <tr><td>Más de 45 UIT</td><td>30%</td></tr>
+      </table>
+      <p>Además, puedes deducir hasta 3 UIT adicionales por gastos como alquiler, honorarios médicos o consumos en restaurantes pagados con comprobante electrónico; esta calculadora no los incluye.</p>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Cuánto me descuenta la AFP en 2026?</summary>
+        <p>Aproximadamente entre 11.37% y 13.06% del sueldo: 10% de aporte a tu fondo, 1.37% de prima de seguro y, si tienes comisión por flujo, entre 1.47% y 1.69%. Con comisión mixta no se cobra comisión sobre el sueldo.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto me descuenta la ONP?</summary>
+        <p>El 13% de tu remuneración bruta.</p>
+      </details>
+      <details>
+        <summary>¿Desde qué sueldo pago impuesto a la renta?</summary>
+        <p>En 2026, con 2 gratificaciones al año, empiezas a pagar quinta categoría si tu sueldo mensual supera aproximadamente S/ 2,715, porque tus ingresos anuales superarían las 7 UIT (S/ 38,500).</p>
+      </details>
+      <details>
+        <summary>¿EsSalud se descuenta de mi sueldo?</summary>
+        <p>No. El 9% de EsSalud es un aporte que paga tu empleador aparte de tu sueldo.</p>
+      </details>
+      <details>
+        <summary>¿Me conviene AFP u ONP?</summary>
+        <p>Depende de tu edad, tu sueldo y tus años de aporte. La AFP forma un fondo propio que heredan tus familiares; la ONP da una pensión fija si cumples 20 años de aportes. Evalúalo con calma y con información oficial.</p>
+      </details>
+
+      <p class="note">Calculadora referencial basada en la normativa vigente (última revisión: <span id="ultima-revision"></span>). No reemplaza la asesoría de un especialista ni el cálculo oficial de tu empleador.</p>
+
+      <h2>Otras calculadoras</h2>
+      <div class="tools"><a class="tool" href="gratificacion.html"><h3>Gratificación</h3><p>Julio y diciembre, con bonificación del 9%.</p></a><a class="tool" href="cts.html"><h3>CTS</h3><p>Depósitos de mayo y noviembre.</p></a><a class="tool" href="liquidacion.html"><h3>Liquidación</h3><p>Todo lo que te deben pagar al dejar un trabajo.</p></a><a class="tool" href="vacaciones-truncas.html"><h3>Vacaciones truncas</h3><p>Vacaciones proporcionales y no gozadas al cese.</p></a><a class="tool" href="horas-extras.html"><h3>Horas extras</h3><p>Pago con sobretasa del 25%, 35% y feriados.</p></a></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+      </nav>
+      <p>© <span data-year></span> CuántoMeToca.pe. Herramientas gratuitas para trabajadores en Perú.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/laboral.js"></script>
+  <script src="js/sueldo-neto.js"></script>
+</body>
+</html>

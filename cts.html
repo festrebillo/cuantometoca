@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de CTS 2026 Perú (mayo y noviembre) | CuántoMeToca.pe</title>
+  <meta name="description" content="Calcula gratis tu CTS de noviembre 2026 o mayo 2027 en Perú. Incluye asignación familiar, 1/6 de la gratificación y días trabajados. Resultado al instante.">
+  <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/cts.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuándo se deposita la CTS?", "acceptedAnswer": {"@type": "Answer", "text": "Dos veces al año: hasta el 15 de mayo (por el periodo noviembre – abril) y hasta el 15 de noviembre (por el periodo mayo – octubre)."}}, {"@type": "Question", "name": "¿La CTS tiene descuentos?", "acceptedAnswer": {"@type": "Answer", "text": "No. La CTS no está afecta a AFP, ONP, EsSalud ni impuesto a la renta; se deposita completa."}}, {"@type": "Question", "name": "¿Qué pasa si trabajé menos de un mes?", "acceptedAnswer": {"@type": "Answer", "text": "Solo corresponde CTS si trabajaste al menos un mes en el periodo. Luego se calcula por meses y días."}}, {"@type": "Question", "name": "¿Los trabajadores de microempresa tienen CTS?", "acceptedAnswer": {"@type": "Answer", "text": "No. En la microempresa inscrita en el REMYPE no corresponde CTS. En la pequeña empresa se recibe la mitad (15 remuneraciones diarias por año)."}}, {"@type": "Question", "name": "¿Qué hago si mi empleador no deposita mi CTS?", "acceptedAnswer": {"@type": "Answer", "text": "Puedes denunciarlo ante la SUNAFIL. El empleador queda obligado a pagar la CTS más los intereses que habría generado."}}]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Herramientas</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Calculadora de CTS 2026</h1>
+    <p class="lead">Calcula cuánto te depositarán de CTS en mayo o noviembre, con el detalle de cada monto. Gratis y sin registro.</p>
+
+    <div class="calc-layout">
+      <form id="form-cts" class="card" novalidate>
+        <div class="field">
+          <label for="deposito">¿Qué depósito quieres calcular?</label>
+          <select id="deposito"><option value="noviembre">Noviembre (periodo mayo – octubre)</option><option value="mayo">Mayo (periodo noviembre – abril)</option></select>
+        </div>
+        <div class="field">
+          <label for="anio">Año del depósito</label>
+          <select id="anio"><option value="2026">2026</option><option value="2027">2027</option></select>
+        </div>
+        <div class="field">
+          <label for="sueldo">Sueldo básico mensual (S/)</label>
+          <input id="sueldo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ej. 2500">
+        </div>
+        <div class="field">
+          <label class="check"><input id="asignacion" type="checkbox"> Recibo asignación familiar</label>
+          <small>10% del sueldo mínimo (S/ 113 al mes) si tienes hijos menores de 18 años o estudiando hasta los 24.</small>
+        </div>
+        <div class="field">
+          <label for="variables">Promedio de ingresos variables (S/) — opcional</label>
+          <input id="variables" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0">
+          <small>Horas extras, comisiones o bonos que recibiste al menos 3 de los últimos 6 meses.</small>
+        </div>
+        <div class="field">
+          <label for="grati">Gratificación recibida en el periodo (S/) — opcional</label>
+          <input id="grati" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Si la dejas vacía, asumimos la completa">
+          <small>Para el depósito de noviembre, la de julio; para el de mayo, la de diciembre (sin la bonificación del 9%).</small>
+        </div>
+        <div class="field">
+          <label for="ingreso">Fecha de ingreso — opcional</label>
+          <input id="ingreso" type="date">
+          <small>Si entraste durante el periodo, calculamos tus meses y días.</small>
+        </div>
+        <div class="field">
+          <label for="meses">Meses completos trabajados en el periodo</label>
+          <select id="meses"><option>6</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option><option>0</option></select>
+        </div>
+        <div class="field">
+          <label for="dias">Días adicionales</label>
+          <input id="dias" type="number" min="0" max="29" value="0">
+        </div>
+        <div class="field">
+          <label for="regimen">Régimen laboral de tu empresa</label>
+          <select id="regimen">
+            <option value="general">Régimen general</option>
+            <option value="pequena">Pequeña empresa (REMYPE)</option>
+            <option value="micro">Microempresa (REMYPE)</option>
+          </select>
+          <small>Si no sabes, casi siempre es el régimen general.</small>
+        </div>
+        <button class="btn" type="submit">Calcular CTS</button>
+      </form>
+
+      <section class="card" aria-live="polite">
+        <h2 style="margin-top:0">Resultado</h2>
+        <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular CTS".</p></div>
+      </section>
+    </div>
+
+    <div class="ad-slot"><!-- Bloque de anuncio AdSense --></div>
+
+    <article class="content">
+      <h2>¿Qué es la CTS?</h2>
+      <p>La Compensación por Tiempo de Servicios (CTS) es un beneficio que funciona como un seguro de desempleo. Tu empleador la deposita dos veces al año en una cuenta bancaria a tu nombre, según el <strong>D.S. N.° 001-97-TR</strong>.</p>
+      <table>
+        <tr><th>Depósito</th><th>Periodo que se calcula</th><th>Fecha límite</th><th>Gratificación que suma</th></tr>
+        <tr><td>Mayo</td><td>1 de noviembre a 30 de abril</td><td>15 de mayo</td><td>1/6 de la de diciembre</td></tr>
+        <tr><td>Noviembre</td><td>1 de mayo a 31 de octubre</td><td>15 de noviembre</td><td>1/6 de la de julio</td></tr>
+      </table>
+
+      <h2>¿Cómo se calcula la CTS?</h2>
+      <p><strong>CTS = (Remuneración computable ÷ 12) × meses trabajados + (Remuneración computable ÷ 360) × días trabajados</strong></p>
+      <p>La <strong>remuneración computable</strong> es tu sueldo básico, más la asignación familiar, más el promedio de ingresos variables regulares, más <strong>un sexto (1/6) de la gratificación</strong> que recibiste en el periodo. A diferencia de la gratificación, en la CTS <strong>sí cuentan los días</strong> sueltos.</p>
+
+      <h2>Ejemplo práctico</h2>
+      <p>Luis gana S/ 3,000, no recibe asignación familiar y trabajó todo el periodo mayo – octubre. En julio recibió S/ 3,000 de gratificación:</p>
+      <ul>
+        <li>Remuneración computable: S/ 3,000 + (S/ 3,000 ÷ 6) = <strong>S/ 3,500</strong></li>
+        <li>CTS: S/ 3,500 ÷ 12 × 6 meses = <strong>S/ 1,750</strong></li>
+      </ul>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Cuándo se deposita la CTS?</summary>
+        <p>Dos veces al año: hasta el 15 de mayo (por el periodo noviembre – abril) y hasta el 15 de noviembre (por el periodo mayo – octubre).</p>
+      </details>
+      <details>
+        <summary>¿La CTS tiene descuentos?</summary>
+        <p>No. La CTS no está afecta a AFP, ONP, EsSalud ni impuesto a la renta; se deposita completa.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si trabajé menos de un mes?</summary>
+        <p>Solo corresponde CTS si trabajaste al menos un mes en el periodo. Luego se calcula por meses y días.</p>
+      </details>
+      <details>
+        <summary>¿Los trabajadores de microempresa tienen CTS?</summary>
+        <p>No. En la microempresa inscrita en el REMYPE no corresponde CTS. En la pequeña empresa se recibe la mitad (15 remuneraciones diarias por año).</p>
+      </details>
+      <details>
+        <summary>¿Qué hago si mi empleador no deposita mi CTS?</summary>
+        <p>Puedes denunciarlo ante la SUNAFIL. El empleador queda obligado a pagar la CTS más los intereses que habría generado.</p>
+      </details>
+
+      <p class="note">Calculadora referencial basada en la normativa vigente (última revisión: <span id="ultima-revision"></span>). No reemplaza la asesoría de un especialista ni el cálculo oficial de tu empleador.</p>
+
+      <h2>Otras calculadoras</h2>
+      <div class="tools"><a class="tool" href="gratificacion.html"><h3>Gratificación</h3><p>Julio y diciembre, con bonificación del 9%.</p></a><a class="tool" href="sueldo-neto.html"><h3>Sueldo neto</h3><p>Tu sueldo después de AFP u ONP y quinta categoría.</p></a><a class="tool" href="liquidacion.html"><h3>Liquidación</h3><p>Todo lo que te deben pagar al dejar un trabajo.</p></a><a class="tool" href="vacaciones-truncas.html"><h3>Vacaciones truncas</h3><p>Vacaciones proporcionales y no gozadas al cese.</p></a><a class="tool" href="horas-extras.html"><h3>Horas extras</h3><p>Pago con sobretasa del 25%, 35% y feriados.</p></a></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+      </nav>
+      <p>© <span data-year></span> CuántoMeToca.pe. Herramientas gratuitas para trabajadores en Perú.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/laboral.js"></script>
+  <script src="js/cts.js"></script>
+</body>
+</html>

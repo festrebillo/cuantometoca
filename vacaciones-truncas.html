@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Vacaciones Truncas 2026 Perú | CuántoMeToca.pe</title>
+  <meta name="description" content="Calcula tus vacaciones truncas y no gozadas en Perú 2026 según el D. Leg. 713. Régimen general y REMYPE. Gratis y al instante.">
+  <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/vacaciones-truncas.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto tiempo debo trabajar para tener vacaciones truncas?", "acceptedAnswer": {"@type": "Answer", "text": "Al menos un mes de servicios. A partir de ahí se pagan de forma proporcional por meses y días."}}, {"@type": "Question", "name": "¿Las vacaciones truncas tienen descuentos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Son remuneración, por lo que se les descuenta AFP u ONP y, si corresponde, impuesto a la renta."}}, {"@type": "Question", "name": "¿Qué es la indemnización vacacional?", "acceptedAnswer": {"@type": "Answer", "text": "Si no gozaste tus vacaciones dentro del año siguiente a haberlas ganado, además de pagarlas, el empleador debe darte una remuneración adicional como indemnización por ese periodo."}}, {"@type": "Question", "name": "¿Cuántos días de vacaciones me tocan?", "acceptedAnswer": {"@type": "Answer", "text": "30 días por año en el régimen general y 15 días en las pequeñas y microempresas inscritas en el REMYPE."}}]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Herramientas</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Calculadora de vacaciones truncas</h1>
+    <p class="lead">Calcula cuánto te deben pagar por las vacaciones que acumulaste y no llegaste a tomar al dejar tu trabajo.</p>
+
+    <div class="calc-layout">
+      <form id="form-vac" class="card" novalidate>
+        <div class="field">
+          <label for="sueldo">Sueldo básico mensual (S/)</label>
+          <input id="sueldo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ej. 2500">
+        </div>
+        <div class="field">
+          <label class="check"><input id="asignacion" type="checkbox"> Recibo asignación familiar</label>
+          <small>10% del sueldo mínimo (S/ 113 al mes) si tienes hijos menores de 18 años o estudiando hasta los 24.</small>
+        </div>
+        <div class="field">
+          <label for="variables">Promedio de ingresos variables (S/) — opcional</label>
+          <input id="variables" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0">
+          <small>Horas extras, comisiones o bonos que recibiste al menos 3 de los últimos 6 meses.</small>
+        </div>
+        <div class="field">
+          <label for="ingreso">Fecha de ingreso</label>
+          <input id="ingreso" type="date">
+        </div>
+        <div class="field">
+          <label for="cese">Último día de trabajo (fecha de cese)</label>
+          <input id="cese" type="date">
+        </div>
+        <div class="field">
+          <label for="pendientes">Periodos de vacaciones vencidos y no gozados</label>
+          <select id="pendientes"><option value="0">Ninguno</option><option value="1">1 periodo</option><option value="2">2 periodos</option><option value="3">3 periodos</option></select>
+          <small>Años completos en los que no tomaste tus vacaciones.</small>
+        </div>
+        <div class="field">
+          <label for="regimen">Régimen laboral de tu empresa</label>
+          <select id="regimen">
+            <option value="general">Régimen general</option>
+            <option value="pequena">Pequeña empresa (REMYPE)</option>
+            <option value="micro">Microempresa (REMYPE)</option>
+          </select>
+          <small>Si no sabes, casi siempre es el régimen general.</small>
+        </div>
+        <button class="btn" type="submit">Calcular vacaciones</button>
+      </form>
+
+      <section class="card" aria-live="polite">
+        <h2 style="margin-top:0">Resultado</h2>
+        <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular vacaciones".</p></div>
+      </section>
+    </div>
+
+    <div class="ad-slot"><!-- Bloque de anuncio AdSense --></div>
+
+    <article class="content">
+      <h2>¿Qué son las vacaciones truncas?</h2>
+      <p>Son las vacaciones proporcionales al tiempo que trabajaste desde tu último aniversario de ingreso, que se pagan cuando terminas tu vínculo laboral antes de completar un nuevo año. Están reguladas por el <strong>Decreto Legislativo N.° 713</strong>.</p>
+      <p>Las <strong>vacaciones no gozadas</strong>, en cambio, son periodos anuales completos que ya ganaste pero no tomaste; se pagan con una remuneración completa por periodo.</p>
+
+      <h2>¿Cómo se calculan?</h2>
+      <p><strong>Vacaciones truncas = (Remuneración computable ÷ 12) × meses + (Remuneración computable ÷ 360) × días</strong></p>
+      <p>En el régimen general te corresponden 30 días de vacaciones por año. En la pequeña y la microempresa (REMYPE) son 15 días, por lo que el monto es la mitad.</p>
+
+      <h2>Ejemplo práctico</h2>
+      <p>María ganaba S/ 1,800, ingresó el 1 de marzo de 2025 y cesó el 31 de agosto de 2026. Desde su último aniversario (1 de marzo de 2026) trabajó 6 meses:</p>
+      <ul><li>Vacaciones truncas: S/ 1,800 ÷ 12 × 6 = <strong>S/ 900</strong></li></ul>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Cuánto tiempo debo trabajar para tener vacaciones truncas?</summary>
+        <p>Al menos un mes de servicios. A partir de ahí se pagan de forma proporcional por meses y días.</p>
+      </details>
+      <details>
+        <summary>¿Las vacaciones truncas tienen descuentos?</summary>
+        <p>Sí. Son remuneración, por lo que se les descuenta AFP u ONP y, si corresponde, impuesto a la renta.</p>
+      </details>
+      <details>
+        <summary>¿Qué es la indemnización vacacional?</summary>
+        <p>Si no gozaste tus vacaciones dentro del año siguiente a haberlas ganado, además de pagarlas, el empleador debe darte una remuneración adicional como indemnización por ese periodo.</p>
+      </details>
+      <details>
+        <summary>¿Cuántos días de vacaciones me tocan?</summary>
+        <p>30 días por año en el régimen general y 15 días en las pequeñas y microempresas inscritas en el REMYPE.</p>
+      </details>
+
+      <p class="note">Calculadora referencial basada en la normativa vigente (última revisión: <span id="ultima-revision"></span>). No reemplaza la asesoría de un especialista ni el cálculo oficial de tu empleador.</p>
+
+      <h2>Otras calculadoras</h2>
+      <div class="tools"><a class="tool" href="gratificacion.html"><h3>Gratificación</h3><p>Julio y diciembre, con bonificación del 9%.</p></a><a class="tool" href="cts.html"><h3>CTS</h3><p>Depósitos de mayo y noviembre.</p></a><a class="tool" href="sueldo-neto.html"><h3>Sueldo neto</h3><p>Tu sueldo después de AFP u ONP y quinta categoría.</p></a><a class="tool" href="liquidacion.html"><h3>Liquidación</h3><p>Todo lo que te deben pagar al dejar un trabajo.</p></a><a class="tool" href="horas-extras.html"><h3>Horas extras</h3><p>Pago con sobretasa del 25%, 35% y feriados.</p></a></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+      </nav>
+      <p>© <span data-year></span> CuántoMeToca.pe. Herramientas gratuitas para trabajadores en Perú.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/laboral.js"></script>
+  <script src="js/vacaciones.js"></script>
+</body>
+</html>

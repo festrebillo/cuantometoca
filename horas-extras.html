@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Horas Extras 2026 Perú (25% y 35%) | CuántoMeToca.pe</title>
+  <meta name="description" content="Calcula el pago de tus horas extras en Perú: sobretasa de 25% las dos primeras horas, 35% las siguientes y 100% en feriados. Gratis y al instante.">
+  <link rel="canonical" href="https://festrebillo.github.io/cuantometoca/horas-extras.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- AdSense: pegar aquí el script cuando Google apruebe la cuenta (ver DOCUMENTACION.md) -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Son obligatorias las horas extras?", "acceptedAnswer": {"@type": "Answer", "text": "No. El trabajo en sobretiempo es voluntario, salvo casos excepcionales como emergencias que pongan en peligro a las personas o las instalaciones."}}, {"@type": "Question", "name": "¿Pueden compensarme las horas extras con descanso?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, si tú y tu empleador lo acuerdan por escrito, las horas extras pueden compensarse con periodos equivalentes de descanso."}}, {"@type": "Question", "name": "¿Las horas extras suben mi gratificación y CTS?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, si las recibes de forma regular (al menos 3 de los últimos 6 meses), su promedio se suma a tu remuneración computable."}}, {"@type": "Question", "name": "¿Qué pasa si no me pagan las horas extras?", "acceptedAnswer": {"@type": "Answer", "text": "Puedes reclamarlas ante la SUNAFIL. Si el empleador no llevaba un registro de control de asistencia, se presume a tu favor."}}]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">CuántoMeToca<span>.pe</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Herramientas</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Calculadora de horas extras</h1>
+    <p class="lead">Calcula cuánto deben pagarte por tus horas extras según la ley peruana, con sobretasas del 25%, 35% y feriados.</p>
+
+    <div class="calc-layout">
+      <form id="form-he" class="card" novalidate>
+        <div class="field">
+          <label for="sueldo">Sueldo básico mensual (S/)</label>
+          <input id="sueldo" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ej. 2500">
+        </div>
+        <div class="field">
+          <label class="check"><input id="asignacion" type="checkbox"> Recibo asignación familiar</label>
+          <small>10% del sueldo mínimo (S/ 113 al mes) si tienes hijos menores de 18 años o estudiando hasta los 24.</small>
+        </div>
+        <div class="field">
+          <label for="jornada">Horas de tu jornada diaria normal</label>
+          <input id="jornada" type="number" min="1" max="12" step="0.5" value="8">
+          <small>La jornada máxima legal es de 8 horas diarias o 48 semanales.</small>
+        </div>
+        <div class="field">
+          <label>Ayuda rápida (opcional)</label>
+          <div style="display:flex;gap:8px">
+            <input id="dias-extra" type="number" min="0" placeholder="Días con horas extra" aria-label="Días con horas extra">
+            <input id="horas-dia" type="number" min="0" step="0.5" placeholder="Horas extra por día" aria-label="Horas extra por día">
+          </div>
+          <small>Repartimos automáticamente las horas entre la tasa del 25% y la del 35%.</small>
+        </div>
+        <div class="field">
+          <label for="h25">Horas extras al 25% en el mes</label>
+          <input id="h25" type="number" min="0" step="0.5" placeholder="0">
+          <small>Las dos primeras horas extra de cada día.</small>
+        </div>
+        <div class="field">
+          <label for="h35">Horas extras al 35% en el mes</label>
+          <input id="h35" type="number" min="0" step="0.5" placeholder="0">
+          <small>A partir de la tercera hora extra de cada día.</small>
+        </div>
+        <div class="field">
+          <label for="hferiado">Horas trabajadas en feriado o día de descanso</label>
+          <input id="hferiado" type="number" min="0" step="0.5" placeholder="0">
+          <small>Solo si no te dieron otro día de descanso a cambio.</small>
+        </div>
+        <button class="btn" type="submit">Calcular horas extras</button>
+      </form>
+
+      <section class="card" aria-live="polite">
+        <h2 style="margin-top:0">Resultado</h2>
+        <div id="resultado"><p class="note">Completa el formulario y presiona "Calcular horas extras".</p></div>
+      </section>
+    </div>
+
+    <div class="ad-slot"><!-- Bloque de anuncio AdSense --></div>
+
+    <article class="content">
+      <h2>¿Cómo se pagan las horas extras en Perú?</h2>
+      <p>Según el <strong>D.S. N.° 007-2002-TR</strong>, el trabajo que excede la jornada ordinaria se paga con una sobretasa sobre el valor de tu hora normal:</p>
+      <table>
+        <tr><th>Horas extra</th><th>Sobretasa</th><th>Pago por hora</th></tr>
+        <tr><td>Primeras 2 horas del día</td><td>25%</td><td>1.25 × valor hora</td></tr>
+        <tr><td>Desde la 3.ª hora</td><td>35%</td><td>1.35 × valor hora</td></tr>
+        <tr><td>Feriado o descanso sin día de reemplazo</td><td>100%</td><td>2 × valor hora</td></tr>
+      </table>
+
+      <h2>¿Cómo calculo el valor de mi hora?</h2>
+      <p><strong>Valor hora = (Sueldo + asignación familiar) ÷ 30 ÷ horas de tu jornada diaria</strong></p>
+      <p>Por ejemplo, con un sueldo de S/ 2,400 y jornada de 8 horas: S/ 2,400 ÷ 30 ÷ 8 = <strong>S/ 10</strong> por hora. Una hora extra al 25% vale S/ 12.50 y al 35%, S/ 13.50.</p>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Son obligatorias las horas extras?</summary>
+        <p>No. El trabajo en sobretiempo es voluntario, salvo casos excepcionales como emergencias que pongan en peligro a las personas o las instalaciones.</p>
+      </details>
+      <details>
+        <summary>¿Pueden compensarme las horas extras con descanso?</summary>
+        <p>Sí, si tú y tu empleador lo acuerdan por escrito, las horas extras pueden compensarse con periodos equivalentes de descanso.</p>
+      </details>
+      <details>
+        <summary>¿Las horas extras suben mi gratificación y CTS?</summary>
+        <p>Sí, si las recibes de forma regular (al menos 3 de los últimos 6 meses), su promedio se suma a tu remuneración computable.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si no me pagan las horas extras?</summary>
+        <p>Puedes reclamarlas ante la SUNAFIL. Si el empleador no llevaba un registro de control de asistencia, se presume a tu favor.</p>
+      </details>
+
+      <p class="note">Calculadora referencial basada en la normativa vigente (última revisión: <span id="ultima-revision"></span>). No reemplaza la asesoría de un especialista ni el cálculo oficial de tu empleador.</p>
+
+      <h2>Otras calculadoras</h2>
+      <div class="tools"><a class="tool" href="gratificacion.html"><h3>Gratificación</h3><p>Julio y diciembre, con bonificación del 9%.</p></a><a class="tool" href="cts.html"><h3>CTS</h3><p>Depósitos de mayo y noviembre.</p></a><a class="tool" href="sueldo-neto.html"><h3>Sueldo neto</h3><p>Tu sueldo después de AFP u ONP y quinta categoría.</p></a><a class="tool" href="liquidacion.html"><h3>Liquidación</h3><p>Todo lo que te deben pagar al dejar un trabajo.</p></a><a class="tool" href="vacaciones-truncas.html"><h3>Vacaciones truncas</h3><p>Vacaciones proporcionales y no gozadas al cese.</p></a></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav>
+        <a href="acerca.html">Acerca de</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="politica-privacidad.html">Política de privacidad</a>
+        <a href="terminos.html">Términos de uso</a>
+      </nav>
+      <p>© <span data-year></span> CuántoMeToca.pe. Herramientas gratuitas para trabajadores en Perú.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/laboral.js"></script>
+  <script src="js/horas-extras.js"></script>
+</body>
+</html>

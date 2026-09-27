@@ -8,13 +8,14 @@ Crear una **web de calculadoras laborales gratuitas para Perú** que genere ingr
 **Expectativa realista:** pocos soles los primeros 3–6 meses y crecimiento entre los 6 y los 12 meses. No hay ingresos garantizados, pero el riesgo económico es mínimo (solo el dominio).
 
 ## 2. Alcance
-**Versión 0.1 (actual):**
+**Versión 1.0 (actual):**
 - Página de inicio con el catálogo de herramientas
-- Calculadora de gratificación (julio y diciembre)
+- 6 calculadoras: **gratificación, CTS, sueldo neto, liquidación, vacaciones truncas y horas extras**, cada una con guía, ejemplo y preguntas frecuentes
+- Pruebas automáticas de fórmulas y páginas (`tests/`)
 - Páginas que exige AdSense: Acerca de, Contacto, Política de privacidad y Términos
 - SEO básico: títulos, descripciones, `sitemap.xml`, `robots.txt` y datos estructurados de preguntas frecuentes (FAQ)
 
-**Siguientes calculadoras:** CTS, sueldo neto, liquidación, vacaciones truncas y horas extras.
+**Ideas de siguientes herramientas:** préstamos e intereses, tipo de cambio, recibo por honorarios (4.ª categoría), subsidio por maternidad o descanso médico.
 
 ## 3. Herramientas
 | Herramienta | Para qué | Costo |
@@ -38,7 +39,12 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 ├── terminos.html              Términos de uso
 ├── css/styles.css             Estilos compartidos (modo claro y oscuro, móvil primero)
 ├── js/config.js               ⚠️ Valores legales (RMV, tasas) — único archivo que se toca cuando cambia la ley
-├── js/gratificacion.js        Lógica de la calculadora de gratificación
+├── cts.html, sueldo-neto.html, liquidacion.html, vacaciones-truncas.html, horas-extras.html
+├── js/laboral.js              Funciones compartidas: fechas (meses y días), CTS/grati/vacaciones truncas, indemnización, quinta categoría
+├── js/gratificacion.js        Lógica de cada calculadora (un archivo por página)
+├── js/cts.js, sueldo-neto.js, liquidacion.js, vacaciones.js, horas-extras.js
+├── tests/pruebas.html         21 pruebas de las fórmulas con casos resueltos a mano
+├── tests/paginas.html         Prueba de punta a punta: llena cada formulario y revisa el total
 ├── robots.txt / sitemap.xml   Indicaciones para Google
 ├── .gitignore                 Excluye .env del repositorio
 ├── .env.example               Plantilla de variables sensibles (hoy no se usa ninguna)
@@ -64,6 +70,15 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 - **REMYPE:** pequeña empresa = 50%; microempresa = no corresponde.
 - La gratificación no tiene descuentos de AFP, ONP ni EsSalud; sí puede estar afecta al impuesto de quinta categoría.
 
+### Base legal del resto de calculadoras
+- **CTS (D.S. 001-97-TR):** (RC ÷ 12) × meses + (RC ÷ 360) × días; RC incluye 1/6 de la gratificación del periodo. Pequeña empresa 50%, microempresa no corresponde.
+- **Sueldo neto:** ONP 13%; AFP 10% de aporte + 1.37% de prima de seguro (Ley 32123, con tope de S/ 12,672.65, remuneración máxima asegurable de jul-sep 2026) + comisión por flujo (Habitat 1.47%, Integra 1.55%, Prima 1.60%, Profuturo 1.69%) o 0% si es mixta.
+- **Quinta categoría:** ingreso anual proyectado (12 sueldos + 2 gratificaciones + bonificación) − 7 UIT; tramos de 8 / 14 / 17 / 20 / 30%. UIT 2026 = **S/ 5,500** (D.S. 301-2025-EF). Se muestra el promedio mensual.
+- **Vacaciones (D. Leg. 713):** truncas = (RC ÷ 12) × meses + (RC ÷ 360) × días desde el último aniversario; mínimo 1 mes de servicios. REMYPE: 15 días (50%).
+- **Indemnización por despido arbitrario:** general 1.5 RC por año (tope 12 RC); pequeña empresa 20 días por año (tope 120 días); microempresa 10 días por año (tope 90 días).
+- **Horas extras (D.S. 007-2002-TR):** valor hora = (sueldo + asignación) ÷ 30 ÷ jornada; +25% las 2 primeras, +35% las siguientes; feriado o descanso +100%.
+- **Simplificaciones declaradas en la web:** la CTS trunca asume que se recibió la última gratificación completa; no se incluye la indemnización vacacional ni la deducción adicional de 3 UIT.
+
 ## 6. Bitácora
 ### 2026-09-27 — v0.1: creación del proyecto
 - **Qué:** estructura del sitio, calculadora de gratificación, páginas legales, SEO básico y repositorio git.
@@ -81,12 +96,22 @@ CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 - **Cómo:** `gh repo create --public --source=. --push` y `gh api POST repos/.../pages`.
 - **Cómo publicar cambios desde ahora:** `git add -A`, `git commit -m "mensaje"` y `git push`. La web se actualiza sola en aproximadamente 1 minuto.
 
+### 2026-09-27 — v1.0: las 6 calculadoras completas
+- **Qué:** nuevas calculadoras de CTS, sueldo neto, liquidación, vacaciones truncas y horas extras, cada una con guía, ejemplo, preguntas frecuentes (datos estructurados FAQ) y enlaces a las demás. La página de inicio enlaza todas y el sitemap se actualizó.
+- **Por qué:** Fer pidió terminar todas las calculadoras. Con 6 herramientas y contenido original el sitio ya cumple lo que AdSense suele exigir. Los enlaces internos ayudan al SEO y hacen que cada visitante vea más páginas (más anuncios).
+- **Cómo:**
+  - Los cálculos comunes están en `js/laboral.js`, para no repetir código; los valores legales nuevos (UIT, AFP, ONP, sobretasas, topes) están en `js/config.js`.
+  - Antes de programar se verificaron en la web la UIT 2026 y las tasas de AFP de 2026.
+  - Las páginas se generaron con un script de Python para que todas tengan el mismo diseño.
+  - **Pruebas:** 21 pruebas de fórmulas y 6 de punta a punta, todas pasando, ejecutadas con Microsoft Edge en modo *headless* (no hay Node instalado).
+  - Comando: `msedge --headless=new --allow-file-access-from-files --virtual-time-budget=15000 --dump-dom "file:///D:/Proyectos%20Claude/CalculaPE/tests/paginas.html"`
+
 ## 7. Próximos pasos
 1. [ ] **Probar la calculadora** abriendo `gratificacion.html` en el navegador (doble clic).
 2. [ ] **Comprar `cuantometoca.pe`** (punto.pe o un registrador autorizado) y reemplazar `https://festrebillo.github.io/cuantometoca` por el dominio. En VS Code: Ctrl+Shift+H.
 3. [ ] **Crear el correo `contacto@cuantometoca.pe`** (por ejemplo con reenvío gratis de Cloudflare Email Routing).
 4. [x] **Publicar:** en GitHub Pages ✅ (2026-09-27).
 5. [ ] **Dar de alta el sitio en Google Search Console** y enviar el `sitemap.xml`.
-6. [ ] **Agregar calculadoras:** CTS (antes del 15 de noviembre), sueldo neto y liquidación.
+6. [x] **Agregar calculadoras:** CTS, sueldo neto, liquidación, vacaciones y horas extras ✅ (2026-09-27).
 7. [ ] **Postular a AdSense** cuando haya al menos 4–5 herramientas con contenido. Al ser aprobado, pegar su script en el `<head>` y crear el archivo `ads.txt`.
-8. [ ] **Vigilar la RMV:** si sale el decreto del aumento a S/ 1,300, actualizar `js/config.js` y registrarlo en esta bitácora.
+8. [ ] **Revisar valores cada trimestre:** remuneración máxima asegurable de la AFP (SBS), comisiones de AFP y UIT cada enero. **Vigilar la RMV:** si sale el decreto del aumento a S/ 1,300, actualizar `js/config.js` y registrarlo en esta bitácora.

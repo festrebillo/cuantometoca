@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Pruebas de páginas CuántoMeToca.pe</title></head>
+<body>
+<!-- Abre cada calculadora, llena el formulario, lo envía y muestra el total que aparece.
+     msedge --headless --allow-file-access-from-files --virtual-time-budget=15000 --dump-dom ".../tests/paginas.html" -->
+<pre id="salida"></pre>
+<script>
+const casos = [
+  { pagina: "gratificacion.html", form: "form-grati", campos: { sueldo: 2500, asignacion: true }, esperado: "S/ 2,848.17" },
+  { pagina: "cts.html", form: "form-cts", campos: { sueldo: 3000 }, esperado: "S/ 1,750.00" },
+  { pagina: "sueldo-neto.html", form: "form-neto", campos: { sueldo: 5000, sistema: "onp" }, esperado: "S/ 4,109.50" },
+  { pagina: "liquidacion.html", form: "form-liq", campos: { sueldo: 2000, ingreso: "2024-09-01", cese: "2026-08-31" }, esperado: null },
+  { pagina: "vacaciones-truncas.html", form: "form-vac", campos: { sueldo: 1800, ingreso: "2025-03-01", cese: "2026-08-31" }, esperado: "S/ 900.00" },
+  { pagina: "horas-extras.html", form: "form-he", campos: { sueldo: 2400, h25: 10, h35: 4 }, esperado: "S/ 179.00" }
+];
+const salida = [];
+const frame = document.createElement("iframe");
+document.body.appendChild(frame);
+
+function correr(i) {
+  if (i >= casos.length) {
+    const f = salida.filter(s => s.startsWith("FALLA")).length;
+    document.getElementById("salida").textContent = salida.join("\n") + `\n\nRESUMEN: ${salida.filter(s => s.startsWith("PASA")).length} pasan, ${f} fallan`;
+    return;
+  }
+  const c = casos[i];
+  frame.onload = () => {
+    try {
+      const d = frame.contentDocument;
+      for (const [id, v] of Object.entries(c.campos)) {
+        const el = d.getElementById(id);
+        if (el.type === "checkbox") el.checked = v; else el.value = v;
+        el.dispatchEvent(new Event("change"));
+      }
+      d.getElementById(c.form).dispatchEvent(new Event("submit", { cancelable: true }));
+      const total = d.querySelector("#resultado .amount");
+      const txt = total ? total.textContent.replace(/ /g, " ") : "(sin resultado) " + d.getElementById("resultado").textContent.slice(0, 120);
+      const pasa = total && (c.esperado === null || txt === c.esperado);
+      salida.push(`${pasa ? "PASA" : "FALLA"} | ${c.pagina} | total=${txt}${c.esperado ? " esperado=" + c.esperado : ""}`);
+      if (c.pagina === "liquidacion.html" && total) {
+        d.querySelectorAll("#resultado tr").forEach(tr => salida.push("       " + tr.textContent.replace(/\s+/g, " ").trim()));
+      }
+    } catch (e) {
+      salida.push(`FALLA | ${c.pagina} | error: ${e.message}`);
+    }
+    correr(i + 1);
+  };
+  frame.src = "../" + c.pagina;
+}
+correr(0);
+</script>
+</body>
+</html>
