@@ -1,4 +1,4 @@
-# CalculaPE — Documentación del proyecto
+# CuántoMeToca.pe — Documentación del proyecto
 
 ## 1. Objetivo
 Crear una **web de calculadoras laborales gratuitas para Perú** que genere ingresos pasivos con **Google AdSense** (y más adelante con productos propios, como plantillas de Excel), sin necesidad de salir en cámara ni de atender clientes.
@@ -29,7 +29,7 @@ Crear una **web de calculadoras laborales gratuitas para Perú** que genere ingr
 
 ## 4. Estructura
 ```
-CalculaPE/
+CuantoMeToca/   (carpeta aún llamada CalculaPE; renombrar con VS Code cerrado)
 ├── index.html                 Inicio: catálogo de herramientas
 ├── gratificacion.html         Calculadora de gratificación + guía + FAQ
 ├── acerca.html                Acerca de (requisito de AdSense)
@@ -70,10 +70,15 @@ CalculaPE/
 - **Por qué:** se eligió este método entre varias opciones (YouTube, TikTok, plantillas de Canva, servicios, micro-SaaS) porque es la única que cumple a la vez: sin cámara, ingreso pasivo, inversión mínima y aprovecha la programación con Claude.
 - **Cómo:** HTML, CSS y JS puro. Antes de programar se verificó en la web que la RMV vigente sigue siendo S/ 1,130 (hay un aumento a S/ 1,300 anunciado en sep-2026, todavía sin decreto).
 
+### 2026-09-27 — v0.2: cambio de nombre a CuántoMeToca.pe
+- **Qué:** se cambió la marca de "CalculaPE" a **CuántoMeToca.pe** y las direcciones provisionales `TU-DOMINIO.com` por `https://festrebillo.github.io/cuantometoca`.
+- **Por qué:** `calcula.pe` ya está registrado y tiene una web activa; usarlo generaría confusión y no se podría comprar ese dominio. "Cuánto me toca" es exactamente cómo busca la gente ("¿cuánto me toca de gratificación?"), lo que ayuda en Google. Se revisó que `cuantometoca.com` está tomado y `cuantometoca.net` libre; el `.pe` parece libre (se confirma al comprarlo en punto.pe).
+- **Cómo:** reemplazo en todos los archivos con `sed`. Correo de contacto provisional: `contacto@cuantometoca.pe` (hay que crearlo al comprar el dominio).
+
 ## 7. Próximos pasos
 1. [ ] **Probar la calculadora** abriendo `gratificacion.html` en el navegador (doble clic).
-2. [ ] **Elegir y comprar el dominio** y reemplazar `TU-DOMINIO.com` en todos los archivos. En VS Code: Ctrl+Shift+H.
-3. [ ] **Crear un correo de contacto** y ponerlo en `contacto.html` y `politica-privacidad.html`.
+2. [ ] **Comprar `cuantometoca.pe`** (punto.pe o un registrador autorizado) y reemplazar `https://festrebillo.github.io/cuantometoca` por el dominio. En VS Code: Ctrl+Shift+H.
+3. [ ] **Crear el correo `contacto@cuantometoca.pe`** (por ejemplo con reenvío gratis de Cloudflare Email Routing).
 4. [ ] **Publicar:** subir el repositorio a GitHub y conectarlo a Vercel o GitHub Pages.
 5. [ ] **Dar de alta el sitio en Google Search Console** y enviar el `sitemap.xml`.
 6. [ ] **Agregar calculadoras:** CTS (antes del 15 de noviembre), sueldo neto y liquidación.

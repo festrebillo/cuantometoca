@@ -1,4 +1,4 @@
-// CalculaPE - Calculadora de gratificación (Ley 27735)
+// CuántoMeToca.pe - Calculadora de gratificación (Ley 27735)
 // Fórmula: (remuneración computable / 6) x meses completos x factor de régimen
 //          + bonificación extraordinaria (9% EsSalud o 6.75% EPS)
 

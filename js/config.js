@@ -1,4 +1,4 @@
-// CalculaPE - valores legales usados por todas las calculadoras.
+// CuántoMeToca.pe - valores legales usados por todas las calculadoras.
 // Cuando cambie la ley (p. ej. nuevo sueldo mínimo), SOLO se actualiza este archivo
 // y se anota el cambio en DOCUMENTACION.md.
 const CONFIG = {
